@@ -25,17 +25,19 @@ function Board(){
 }
 
 Board.prototype.paintCell = function(value){
-	console.log("got in here?");
-	console.log(value);
-	console.log(this.turn);
+	//console.log("got in here?");
+	//console.log(value);
+	//console.log(this.turn);
+	var played = false;
 	for(var i = 0; i < this.cells.length; i++){
+		//Determines that cell being clicked on is an empty cell and matches the cell to the element selector.
 		if(value == this.cells[i].element && this.cells[i].content == "E"){
 			this.cells[i].paint(this.turn);
-		}
-		else{
-			return false
+			played = true;
 		}
 	}
+	console.log(played);
+	return played;
 
 };
 
@@ -57,13 +59,18 @@ Board.prototype.displayTurn = function(){
 		$("#player2").addClass('active');
 	}
 };
+/*
+This method is used to empty all of the cells on the board.
+ */
 Board.prototype.emptyAllCells = function(){
 	for(var i =0;  i < cells.length; i++){
 		this.cells[i].clear();
 		this.items[i].removeClass("box-filled-1 box-filled-2");
 	}
 };
-
+/*
+This method used to determine the amount of empty cells left.
+ */
 Board.prototype.emptyCellsLeftOnBoard = function(){
 	var indxs = [];
 	for(var itr = 0; itr < 9 ; itr++) {
@@ -74,6 +81,10 @@ Board.prototype.emptyCellsLeftOnBoard = function(){
 	return indxs;
 };
 
+
+/*
+This method is used to determine if the game is finished, who won, and if there is a draw or not.
+ */
 Board.prototype.isTerminal = function() {
 	var board = this.cells;
 	//check rows

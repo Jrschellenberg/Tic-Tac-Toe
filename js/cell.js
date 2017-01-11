@@ -35,16 +35,12 @@ Cell.prototype.getContent = function(){
 
 Cell.prototype.paint = function(content){
 	this.content = content;
-	console.log("in the cell paint function??");
-	console.log(this.content);
-	console.log(this.element);
+
 	if(this.content === "O"){
 		$(this.element).addClass("box-filled-1");
-
 	}
 	else if(this.content === "X"){
 		$(this.element).addClass("box-filled-2");
-
 	}
 	else{
 		console.log("hitting else ");

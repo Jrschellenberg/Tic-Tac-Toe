@@ -8,13 +8,18 @@ var board = new Board();
 
 $(".box").click(function(index){
 
-	console.log(this);
-	if(board.paintCell(this) === true){
-		console.log("got inside the advancing turn");
+	//If the board paints a cell, then returns true
+	if(board.paintCell(this))
+	{
+		console.log("got in here?");
+		//since it painted a cell
 		board.advanceTurn();
 		board.displayTurn();
 	}
-	console.log("keep missing it");
+
+
+
+
 
 
 
