@@ -11,13 +11,14 @@ function Board(){
 	this.items = $(".box");
 	this.cells = new Array();
 
-	this.index = [];
+
+	this.board = [];
 
 
 	console.log(this.items);
 	for(var i=0; i < this.items.length; i++){
 		console.log(this.items[i]);
-		this.index[i] = i;
+		this.board[i] = i;
 		this.cells.push(new Cell(this.items[i]));
 
 	}
@@ -39,6 +40,15 @@ Board.prototype.paintCell = function(value){
 	console.log(played);
 	return played;
 
+};
+Board.prototype.isEmptyCell = function(value){
+	for(var i = 0; i < this.cells.length; i++) {
+
+		if (value == this.cells[i].element && this.cells[i].content == "E") {
+			return true;
+		}
+	}
+	return false;
 };
 
 Board.prototype.advanceTurn = function(){
@@ -63,9 +73,9 @@ Board.prototype.displayTurn = function(){
 This method is used to empty all of the cells on the board.
  */
 Board.prototype.emptyAllCells = function(){
-	for(var i =0;  i < cells.length; i++){
+	for(var i =0;  i < this.cells.length; i++){
 		this.cells[i].clear();
-		this.items[i].removeClass("box-filled-1 box-filled-2");
+		$(this.items[i]).removeClass("box-filled-1 box-filled-2");
 	}
 };
 /*
@@ -74,7 +84,7 @@ This method used to determine the amount of empty cells left.
 Board.prototype.emptyCellsLeftOnBoard = function(){
 	var indxs = [];
 	for(var itr = 0; itr < 9 ; itr++) {
-		if(this.board[itr] === "E") {
+		if(this.cells[itr].content === "E") {
 			indxs.push(itr);
 		}
 	}
@@ -89,24 +99,24 @@ Board.prototype.isTerminal = function() {
 	var board = this.cells;
 	//check rows
 	for(var i = 0; i <= 6; i = i + 3) {
-		if(board[i] !== "E" && board[i] === board[i + 1] && board[i + 1] == board[i + 2]) {
-			this.result = board[i] + "-won"; //update the state result
+		if(board[i].content !== "E" && board[i].content === board[i + 1].content && board[i + 1].content == board[i + 2].content) {
+			this.result = board[i].content + "-won"; //update the state result
 			return true;
 		}
 	}
 
 	//check columns
 	for(var i = 0; i <= 2 ; i++) {
-		if(board[i] !== "E" && board[i] === board[i + 3] && board[i + 3] === board[i + 6]) {
-			this.result = board[i] + "-won"; //update the state result
+		if(board[i].content !== "E" && board[i].content === board[i + 3].content && board[i + 3].content === board[i + 6].content) {
+			this.result = board[i].content + "-won"; //update the state result
 			return true;
 		}
 	}
 
 	//check diagonals
 	for(var i = 0, j = 4; i <= 2 ; i = i + 2, j = j - 2) {
-		if(board[i] !== "E" && board[i] == board[i + j] && board[i + j] === board[i + 2*j]) {
-			this.result = board[i] + "-won"; //update the state result
+		if(board[i].content !== "E" && board[i].content == board[i + j].content && board[i + j].content === board[i + 2*j].content) {
+			this.result = board[i].content + "-won"; //update the state result
 			return true;
 		}
 	}

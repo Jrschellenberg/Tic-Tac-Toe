@@ -15,8 +15,7 @@ function Cell(element){
 
 Cell.prototype.clear = function(){
 	this.content = TYPE.EMPTY;
-	this.cell.removeClass("box-filled-1");
-	this.cell.removeClass("box-filled-2");
+	$(this.cell).removeClass("box-filled-1 box-filled-2");
 };
 
 Cell.prototype.setContent = function(content){
