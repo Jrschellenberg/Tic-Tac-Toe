@@ -141,6 +141,8 @@ h1 {
       background-color: #3688C3;
       background-image: url(../img/x.svg); }
 
+
+    /* Styles to be displayed when either player 1 or player 2 hovers over box elements */
     .boxes .box-hover1{
       background-image: url(../img/o.svg);
 
