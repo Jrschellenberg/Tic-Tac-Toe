@@ -3,16 +3,17 @@
  */
 
 //a object variable to hold the different types of cells.
-var TYPE = {
-	EMPTY: "E",
-	NOUGHT: "O",
-	CROSS: "X"
-};
+
 
 /*
  the constructor of the Cell object.
  */
 function Cell(element) {
+	var TYPE = {
+		EMPTY: "E",
+		NOUGHT: "O",
+		CROSS: "X"
+	};
 	this.content = TYPE.EMPTY;
 	this.element = element;
 	//Cell.clear();
@@ -22,7 +23,7 @@ function Cell(element) {
  a method to clear the cells content and remove the styles associated with that content.
  */
 Cell.prototype.clear = function () {
-	this.content = TYPE.EMPTY;
+	this.content = this.TYPE.EMPTY;
 	$(this.cell).removeClass("box-filled-1 box-filled-2");
 };
 
